@@ -1,73 +1,6 @@
 ---
 list:
 
-  - name: Semantic MediaWiki
-    composer: "mediawiki/semantic-media-wiki"
-    version: "4.0.1"
-    config: |
-      // Enable Semantic MediaWiki semantics
-      wfLoadExtension( 'SemanticMediaWiki' );
-      enableSemantics( $wikiId );
-
-      // Semantic MediaWiki Settings
-      $smwgQMaxSize = 5000;
-
-      // allows adding semantic properties to Templates themselves
-      // (not just on pages via templates).
-      $smwgNamespacesWithSemanticLinks[NS_TALK] = true;
-      $smwgNamespacesWithSemanticLinks[NS_TEMPLATE] = true;
-
-      // Always use DB_REPLICA for temporary table actions. Need to pick either
-      // DB_REPLICA or DB_MASTER for this, since temporary tables will either not
-      // replicate at all or won't replicate fast enough (or, even if they do
-      // technically replicate, they are only available to the session that
-      // created them, and thus they effectively don't replicate). Picking
-      // DB_REPLICA since temporary tables are effectively a read-action since
-      // they are used only for making more efficient queries.
-      $smwgLocalConnectionConf['mw.db.queryengine'] = [ 'read' => DB_REPLICA, 'write' => DB_REPLICA ];
-
-      // According to https://www.semantic-mediawiki.org/wiki/Help:$smwgDefaultStore
-      //
-      // From Semantic MediaWiki 1.8.0 to Semantic MediaWiki 3.2.3, the default
-      // value was SMWSQLStore3. This default value becames SMW\SQLStore\SQLStore
-      // in Semantic MediaWiki 4.0.0, but this is just a renaming of the class
-      // and SMWSQLStore3 remains a class alias. However, SemanticDrilldown
-      // does not seem to work unless this value is explicitly set to
-      // SMWSQLStore3.
-      //
-      // See https://phabricator.wikimedia.org/T305911 to determine if this has
-      // been resolved upstream.
-      //
-      $smwgDefaultStore = 'SMWSQLStore3';
-
-  - name: Semantic Result Formats
-    composer: "mediawiki/semantic-result-formats"
-    version: "4.0.1"
-    config: |
-      // In SRF 3.0+ you need to do this, too:
-      wfLoadExtension( 'SemanticResultFormats' );
-
-      // SemanticResultFormats formats enabled (beyond defaults)
-      // These are disabled by default because they send data to external
-      // web services for rendering, which may be considered a data leak
-      // $srfgFormats[] = 'googlebar';
-      // $srfgFormats[] = 'googlepie';
-
-      // Disabled until the proper dependencies are added (PHPExcel I think)
-      // $srfgFormats[] = 'excel';
-
-      // Enables the "filtered" format. Where do we use this?
-      $srfgFormats[] = 'filtered';
-
-      // Disabled due to some issue on FOD wikis. Confirm, reenable if possible
-      // $srfgFormats[] = 'exhibit';
-
-  - name: SemanticCompoundQueries
-    composer: "mediawiki/semantic-compound-queries"
-    version: "2.2.0"
-    config: |
-      wfLoadExtension( 'SemanticCompoundQueries' );
-
   - name: Scribunto
     repo: https://github.com/wikimedia/mediawiki-extensions-Scribunto.git
     version: "{{ mediawiki_default_branch }}"
@@ -75,12 +8,6 @@ list:
       $wgScribuntoDefaultEngine = 'luasandbox';
       $wgScribuntoUseGeSHi = true;
       $wgScribuntoUseCodeEditor = true;
-
-  - name: "Semantic Scribunto"
-    composer: "mediawiki/semantic-scribunto"
-    version: "2.2.0"
-    config: |
-      wfLoadExtension( 'SemanticScribunto' );
 
   - name: SubPageList
     composer: "mediawiki/sub-page-list"
@@ -240,12 +167,6 @@ list:
     version: "{{ mediawiki_default_branch }}"
     composer_merge: True
 
-#   - name: Thanks
-#     repo: https://github.com/wikimedia/mediawiki-extensions-Thanks.git
-#     version: "{{ mediawiki_default_branch }}"
-#     config: |
-#       $wgThanksConfirmationRequired = false;
-#
   - name: RevisionSlider
     repo: https://github.com/wikimedia/mediawiki-extensions-RevisionSlider.git
     version: "{{ mediawiki_default_branch }}"
@@ -291,16 +212,6 @@ list:
     version: "{{ mediawiki_default_branch }}"
     config: |
       $wgPageShowWatchingUsers = true;
-
-  - name: SemanticInternalObjects
-    repo: https://github.com/djflux/mediawiki-extensions-SemanticInternalObjects.git
-    version: master
-    legacy_load: true
-
-  - name: SemanticDrilldown
-    repo: https://github.com/SemanticMediaWiki/SemanticDrilldown.git
-    version: "8262c2a17d5eac3db68f1cc909df92f455740a5e"
-    legacy_load: false
 
   - name: Arrays
     repo: https://github.com/wikimedia/mediawiki-extensions-Arrays.git
@@ -384,9 +295,6 @@ list:
         array(0,50)
       );
 
-  - name: SemanticExtraSpecialProperties
-    composer: "mediawiki/semantic-extra-special-properties"
-    version: "3.0.1"
   - name: PipeEscape
     repo: https://github.com/wikimedia/mediawiki-extensions-PipeEscape.git
     version: "{{ mediawiki_default_branch }}"
@@ -464,11 +372,6 @@ list:
     legacy_load: True
 
   # Verify 34.x functionality
-  - name: SemanticMeetingMinutes
-    repo: https://github.com/enterprisemediawiki/SemanticMeetingMinutes.git
-    version: tags/1.0.0
-    legacy_load: True
-
   - name: NumerAlpha
     repo: https://github.com/wikimedia/mediawiki-extensions-NumerAlpha.git
     version: "{{ mediawiki_default_branch }}"
