@@ -573,7 +573,7 @@ $wgVectorUseSimpleSearch = true;
 
 //$wgDefaultUserOptions['useeditwarning'] = 1;
 
-// disable page edit warning (edit warning affect Semantic Forms)
+// disable page edit warning (edit warning affect Page Forms)
 $wgVectorFeatures['editwarning']['global'] = false;
 
 $wgDefaultUserOptions['rememberpassword'] = 1;
@@ -598,7 +598,7 @@ $wgMaxImageArea = 1.25e10; // Images on [[Snorkel]] fail without this
 
 
 // Increase from default setting for large form
-// See https://www.mediawiki.org/wiki/Extension_talk:Semantic_Forms/Archive_April_to_June_2012#Error:_Backtrace_limit_exceeded_during_parsing
+// See https://www.mediawiki.org/wiki/Extension_talk:Page_Forms/Archive_April_to_June_2012#Error:_Backtrace_limit_exceeded_during_parsing
 // If set to 10million, errors are seen when using Edit with form on mission pages like 41S
 // ini_set( 'pcre.backtrack_limit', 10000000 ); //10million
 ini_set( 'pcre.backtrack_limit', 1000000000 ); //1 billion

@@ -28,8 +28,7 @@
   include_role:
     name: verify-wiki
 
-# Wikis are totally built at this point, but SMW and search need rebuilding
-# Not totally sure SMW-rebuild is necessary, but maybe for imported pages?
+# Wikis are totally built at this point, but search needs rebuilding
 # FIXME #811: Ensure no issues with this on multi-server environments and when
 #             controller is NOT an app server
 - name: (Re-)build search index for each wiki
@@ -37,9 +36,3 @@
   run_once: true
   tags:
   - search-index
-
-- name: Rebuild SemanticMediaWiki data for each wiki
-  shell: "bash {{ m_deploy }}/smw-rebuild-all.sh {{ wiki_id }} > {{ m_logs }}/smw-rebuilddata/smw-rebuild-all.log"
-  run_once: true
-  tags:
-  - smw-data
