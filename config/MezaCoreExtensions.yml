@@ -274,7 +274,6 @@ list:
   - name: ContributionScores
     repo: https://github.com/wikimedia/mediawiki-extensions-ContributionScores.git
     version: "{{ mediawiki_default_branch }}"
-    legacy_load: true
     config: |
       // Exclude Bots from the reporting - Can be omitted.
       $wgContribScoreIgnoreBots = true;
