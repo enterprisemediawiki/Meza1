@@ -297,7 +297,6 @@ list:
   - name: PipeEscape
     repo: https://github.com/wikimedia/mediawiki-extensions-PipeEscape.git
     version: "{{ mediawiki_default_branch }}"
-    legacy_load: true
 
   - name: CirrusSearch
     repo: https://github.com/wikimedia/mediawiki-extensions-CirrusSearch.git
