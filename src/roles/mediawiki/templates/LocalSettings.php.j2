@@ -561,14 +561,6 @@ $wgCacheDirectory = "{{ m_cache_directory }}/$wikiId";
 // opens external links in new window
 $wgExternalLinkTarget = '_blank';
 
-// added this line to allow linking. specifically to Imagery Online.
-$wgAllowExternalImages = true;
-{% if allow_image_tags is defined and allow_image_tags %}
-$wgAllowImageTag = true;
-{% else %}
-$wgAllowImageTag = false;
-{% endif %}
-
 $wgVectorUseSimpleSearch = true;
 
 //$wgDefaultUserOptions['useeditwarning'] = 1;
