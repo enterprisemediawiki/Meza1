@@ -532,37 +532,29 @@
 #     es_do_upgrade: False
 #   when: not es_do_upgrade_stat.stat.exists
 
-- name: Verify metastore index upgraded
-  shell: WIKI={{ list_of_wikis[0] }} php {{ m_mediawiki }}/extensions/CirrusSearch/maintenance/Metastore.php --upgrade
-  register: metastore_upgrade_result
-  run_once: true
-  when: docker_skip_tasks is not defined or not docker_skip_tasks
-
-# Run these tasks if the task above fails
+# These next 3 tasks are meant to get the submodules for mediawiki
 # There's probably a better way to do this
-- name: Remove vendor directory - Run if metastore index upgrade fails
+- name: Remove vendor directory
   shell: "rm -rf {{ m_mediawiki }}/vendor"
   run_once: true
-  when: metastore_upgrade_result.failed
 
-- name: Remove composer.lock - Run if metastore index upgrade fails
+- name: Remove composer.lock
   shell: "rm {{ m_mediawiki }}/composer.lock"
   run_once: true
-  when: metastore_upgrade_result.failed
 
-- name: Run composer update - Run if metastore index upgrade fails
+- name: Run composer update
   become: yes
   become_user: "meza-ansible"
   composer:
     command: update
     working_dir: "{{ m_mediawiki }}"
     no_dev: yes
-  when: metastore_upgrade_result.failed
 
-- name: Retry - Verify metastore index upgraded
+- name: Verify metastore index upgraded
   shell: WIKI={{ list_of_wikis[0] }} php {{ m_mediawiki }}/extensions/CirrusSearch/maintenance/Metastore.php --upgrade
+  register: metastore_upgrade_result
   run_once: true
-  when: metastore_upgrade_result.failed
+  when: docker_skip_tasks is not defined or not docker_skip_tasks
 
 # Wikis are totally built at this point, but search needs rebuilding
 # FIXME #811: Will this work when controller is not an app server?
