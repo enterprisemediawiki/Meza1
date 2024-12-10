@@ -217,12 +217,6 @@ list:
     repo: https://github.com/wikimedia/mediawiki-extensions-Arrays.git
     version: "8ffa3c6a4ae43824d8128c120ff25d569bae3d53"
 
-  # Verify 34.x functionality
-  - name: TalkRight
-    repo: https://github.com/enterprisemediawiki/TalkRight.git
-    version: tags/2.0.0
-    legacy_load: false
-
   - name: AdminLinks
     repo: https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
     version: tags/0.5
