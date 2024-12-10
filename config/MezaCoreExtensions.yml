@@ -61,7 +61,7 @@ list:
 
   - name: PageForms
     repo: https://github.com/wikimedia/mediawiki-extensions-PageForms.git
-    version: "tags/4.7"
+    version: "tags/5.3.4"
     config: |
       // If enabled all "red links" will bring up a form chooser
       $wgPageFormsLinkAllRedLinksToForms = false;
