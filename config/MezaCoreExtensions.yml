@@ -247,8 +247,8 @@ list:
 
   # Verify 34.x functionality
   - name: Wiretap
-    repo: https://github.com/enterprisemediawiki/Wiretap.git
-    version: tags/0.2.0
+    repo: https://github.com/djflux/Wiretap.git
+    version: "d70a56562ecd01cd3dec7f9e639a7e8f2898aaae"
 
   # Verify 34.x functionality
   - name: ImagesLoaded
@@ -269,7 +269,7 @@ list:
 
   - name: Variables
     repo: https://github.com/wikimedia/mediawiki-extensions-Variables.git
-    version: "{{ mediawiki_default_branch }}"
+    version: "8038bcabb4829f3f3845db97da9f9b157c8a606b"
 
   - name: ContributionScores
     repo: https://github.com/wikimedia/mediawiki-extensions-ContributionScores.git
