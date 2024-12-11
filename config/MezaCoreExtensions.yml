@@ -236,8 +236,8 @@ list:
 
   # Verify 34.x functionality
   - name: CopyWatchers
-    repo: https://github.com/jamesmontalvo3/MediaWiki-CopyWatchers.git
-    version: tags/0.11.0
+    repo: https://github.com/V-Brooks/MediaWiki-CopyWatchers.git
+    version: "4d66119f0cc3bbf9744952757e8bf737e7ab45e9"
 
   # Verify 34.x functionality
   - name: Wiretap
