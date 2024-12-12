@@ -11,7 +11,7 @@ list:
 
   - name: SubPageList
     composer: "mediawiki/sub-page-list"
-    version: "1.6.1"
+    version: "2.1.0"
 
   - name: Maps
     composer: "mediawiki/maps"
