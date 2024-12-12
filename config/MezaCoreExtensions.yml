@@ -173,7 +173,7 @@ list:
 
   - name: CollapsibleVector
     repo: https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
-    version: 7b71b1b04cc77eb4621e55b3dda6b9e15f4dd029
+    version: a5cf7b5cb68f0d49152812bb61056870c894a402
 
   - name: SimpleMathJax
     repo: https://github.com/jamesmontalvo3/SimpleMathJax.git
