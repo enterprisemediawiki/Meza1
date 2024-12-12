@@ -108,7 +108,7 @@ list:
     version: "{{ mediawiki_default_branch }}"
 
   - name: UniversalLanguageSelector
-    repo: https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
+    repo: https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector.git
     version: "{{ mediawiki_default_branch }}"
     config: |
       // Disable international phoenetic alphabet selector that breaks searching for
@@ -172,7 +172,7 @@ list:
     version: "{{ mediawiki_default_branch }}"
 
   - name: CollapsibleVector
-    repo: https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
+    repo: https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector.git
     version: a5cf7b5cb68f0d49152812bb61056870c894a402
 
   - name: SimpleMathJax
@@ -181,7 +181,7 @@ list:
     legacy_load: True
 
   - name: ImageMap
-    repo: https://github.com/wikimedia/mediawiki-extensions-ImageMap
+    repo: https://github.com/wikimedia/mediawiki-extensions-ImageMap.git
     version: "{{ mediawiki_default_branch }}"
 
   # Verify 34.x functionality
@@ -307,7 +307,7 @@ list:
       $wgEchoEmailFooterAddress = $wgPasswordSender;
 
   - name: UploadWizard
-    repo: https://github.com/wikimedia/mediawiki-extensions-UploadWizard
+    repo: https://github.com/wikimedia/mediawiki-extensions-UploadWizard.git
     version: "{{ mediawiki_default_branch }}"
     config: |
       // Needed to make UploadWizard work in IE, see bug 39877
