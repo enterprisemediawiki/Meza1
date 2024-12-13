@@ -358,6 +358,11 @@ list:
     repo: https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git
     version: "tags/1.1.1"
 
+  - name: PageImporter
+    repo: https://github.com/enterprisemediawiki/PageImporter.git
+    version: tags/0.1.0
+    legacy_load: True
+
   # Verify 34.x functionality
   - name: NumerAlpha
     repo: https://github.com/wikimedia/mediawiki-extensions-NumerAlpha.git
