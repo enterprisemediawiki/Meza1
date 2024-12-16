@@ -99,7 +99,7 @@ php_debian_version: "7.4"
 # Meza 31.x had 5.x
 # Meza 32.x through 34.x were never released, but had 5.x or 6.x
 # Meza 35.x uses 6.x
-elasticsearch_major_version: "6.x"
+elasticsearch_major_version: "7.x"
 
 # Whether or not to install Lua/luasandbox
 m_install_lua: false
