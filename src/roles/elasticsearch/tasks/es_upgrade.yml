@@ -49,6 +49,8 @@
     url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
     method: PUT
     body: "{{ elasticsearch_disable_allocation | string }}"
+    headers:
+      Content-Type: "application/json"
 
 # Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/restart-upgrade.html#_step_2_perform_a_synced_flush
 # Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/indices-synced-flush.html
