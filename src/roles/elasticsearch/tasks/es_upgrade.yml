@@ -45,39 +45,37 @@
 
 
 # Check Elasticsearch version and run task conditionally - Disable shard allocation for the cluster
-- hosts: localhost
-  tasks:
-    - name: Get Elasticsearch version
-      uri:
-        url: "http://localhost:9200"
-        method: GET
-        return_content: yes
-      register: es_version_response
-      failed_when: false  # If the Elasticsearch service is not available, this won't cause the task to fail.
+- name: Get Elasticsearch version
+  uri:
+    url: "http://localhost:9200"
+    method: GET
+    return_content: yes
+  register: es_version_response
+  failed_when: false  # If the Elasticsearch service is not available, this won't cause the task to fail.
 
-    - name: Set Elasticsearch version fact
-      set_fact:
-        es_version: "{{ es_version_response.json.version.number | default('0') }}"
-      
-    - name: Print the version for debugging
-      debug:
-        msg: "Elasticsearch version is {{ es_version }}"
+- name: Set Elasticsearch version fact
+  set_fact:
+    es_version: "{{ es_version_response.json.version.number | default('0') }}"
+  
+- name: Print the version for debugging
+  debug:
+    msg: "Elasticsearch version is {{ es_version }}"
 
-    - name: Run task for Elasticsearch version 6.x - Disable shard allocation for the cluster
-      uri:
-        url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
-        method: PUT
-        body: "{{ elasticsearch_disable_allocation | string }}"
-      when: es_version.startswith('6')
+- name: Run task for Elasticsearch version 6.x - Disable shard allocation for the cluster
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
+    method: PUT
+    body: "{{ elasticsearch_disable_allocation | string }}"
+  when: es_version.startswith('6')
 
-    - name: Run task for Elasticsearch version 7.x - Disable shard allocation for the cluster
-      uri:
-        url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
-        method: PUT
-        body: "{{ elasticsearch_disable_allocation | string }}"
-        headers:
-          Content-Type: "application/json"
-      when: es_version.startswith('7')
+- name: Run task for Elasticsearch version 7.x - Disable shard allocation for the cluster
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
+    method: PUT
+    body: "{{ elasticsearch_disable_allocation | string }}"
+    headers:
+      Content-Type: "application/json"
+  when: es_version.startswith('7')
 
 # Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/restart-upgrade.html#_step_2_perform_a_synced_flush
 # Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/indices-synced-flush.html
