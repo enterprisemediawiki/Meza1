@@ -41,14 +41,7 @@ path.logs: {{ m_meza_data }}/elasticsearch/log
 # Fixes xpack SSL java access denied at ES startup.
 #
 # Probably not the best way to do this. Suggestions welcome
-{% if elasticsearch_major_version == "6.x" %}
-xpack.ssl.truststore.path: /etc/elasticsearch/cacerts-java-extracted
-xpack.ssl.truststore.password: changeit
-{% elif elasticsearch_major_version == "7.x" %}
 xpack.http.ssl.truststore.path: /etc/elasticsearch/cacerts-java-extracted
 xpack.http.ssl.truststore.password: changeit
-{% else %}
-# You can add additional handling here
-{% endif %}
 reindex.ssl.truststore.path: /etc/elasticsearch/cacerts-java-extracted
 reindex.ssl.truststore.password: changeit
