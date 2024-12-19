@@ -44,8 +44,8 @@
 #        attempt to add to the index may be bad.
 
 
-- name: Check Elasticsearch version and run task conditionally - Disable shard allocation for the cluster
-  hosts: localhost
+# Check Elasticsearch version and run task conditionally - Disable shard allocation for the cluster
+- hosts: localhost
   tasks:
     - name: Get Elasticsearch version
       uri:
