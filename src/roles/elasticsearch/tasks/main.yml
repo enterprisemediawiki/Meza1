@@ -184,6 +184,34 @@
     do_elasticsearch_upgrade: False
   when: es_version_found|int == es_version_desired|int
 
+# If shard allocation isn't enabled, then enable it
+- name: Check Elasticsearch shard allocation status
+  uri:
+    url: "http://localhost:9200/_cluster/settings"
+    method: GET
+  register: es_settings
+  changed_when: false
+  when: do_elasticsearch_upgrade is false
+
+- name: Enable Elasticsearch shard allocation if disabled
+  uri:
+    url: "http://localhost:9200/_cluster/settings"
+    method: PUT
+    body: |
+      {
+        "persistent": {
+          "cluster.routing.allocation.enable": "all"
+        }
+      }
+    body_format: json
+    status_code: 200
+  when: >
+    es_settings.json.persistent.cluster is defined and
+    es_settings.json.persistent.cluster.routing is defined and
+    es_settings.json.persistent.cluster.routing.allocation is defined and
+    es_settings.json.persistent.cluster.routing.allocation.enable is defined and
+    es_settings.json.persistent.cluster.routing.allocation.enable == "none"
+
 # Note: force_do_elasticsearch_upgrade not set anywhere. This can be used with:
 #       `meza deploy ... --extra-vars "force_do_elasticsearch_upgrade=True"`
 - name: Set do_elasticsearch_upgrade to TRUE
