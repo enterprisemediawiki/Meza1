@@ -38,6 +38,13 @@
 #   retries: 50
 #   delay: 30
 
+# Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/restart-upgrade.html#_step_2_perform_a_synced_flush
+# Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/indices-synced-flush.html
+- name: Perform synced flush
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_flush/synced"
+    method: POST
+
 
 # FIXME: Maybe add step to tell MediaWiki to trying to use Elasticsearch, in
 #        particular if this is a single ES node setup. Either way, having MW
@@ -51,13 +58,6 @@
     body: "{{ elasticsearch_disable_allocation | string }}"
     headers:
       Content-Type: "application/json"
-
-# Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/restart-upgrade.html#_step_2_perform_a_synced_flush
-# Ref: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/indices-synced-flush.html
-- name: Perform synced flush
-  uri:
-    url: "http://localhost:{{ elasticsearch_http_port }}/_flush/synced"
-    method: POST
 
 # Shutdown all nodes
 - name: Shutdown elasticsearch node
