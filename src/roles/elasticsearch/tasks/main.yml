@@ -191,7 +191,7 @@
     method: GET
   register: es_settings
   changed_when: false
-  when: do_elasticsearch_upgrade is false
+  when: do_elasticsearch_upgrade == false
 
 - name: Enable Elasticsearch shard allocation if disabled
   uri:
