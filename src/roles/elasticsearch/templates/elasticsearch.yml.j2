@@ -5,20 +5,21 @@
 
 ################################### Cluster ###################################
 
-# Cluster name identifies your cluster for auto-discovery. If you're running
-# multiple clusters on the same network, make sure you're using unique names.
+# Cluster name identifies your cluster for auto-discovery. If you are running
+# multiple clusters on the same network, make sure you are using unique names.
 #
 cluster.name: "{{ elasticsearch_cluster_name }}"
 
 
 #################################### Node #####################################
 
-# Node names are generated dynamically on startup, so you're relieved
+# Node names are generated dynamically on startup, so you are relieved
 # from configuring them manually. You can tie this node to a specific name:
 #
 node.name: "{{ elasticsearch_node_name }}"
 
-
+# Set default number of replicas to 0 for single-node deployment
+index.number_of_replicas: 0
 
 #################################### Paths ####################################
 
