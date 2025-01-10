@@ -10,7 +10,25 @@
 
 # [1] https://www.elastic.co/guide/en/elasticsearch/reference/2.3/setup-upgrade.html
 
+- name: Set number of replicas to 0 for all existing indices
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_all/_settings"
+    method: PUT
+    body: '{"index": {"number_of_replicas": 0}}'
+    body_format: json
+  register: replica_result
+  retries: 3
+  delay: 10
 
+- name: Create template for zero replicas for future indices
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_template/default_settings"
+    method: PUT
+    body: '{"index_patterns": ["*"], "settings": {"number_of_replicas": 0}}'
+    body_format: json
+  register: template_result
+  retries: 3
+  delay: 10
 # Upgrades will likely require new plugin versions. Remove plugins which were
 # once installed by meza. Any user-installed plugins will need to be manually
 # removed unless we come up with a way to remove all.
