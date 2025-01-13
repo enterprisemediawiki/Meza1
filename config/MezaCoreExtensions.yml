@@ -11,7 +11,7 @@ list:
 
   - name: SubPageList
     composer: "mediawiki/sub-page-list"
-    version: "2.1.0"
+    version: "3.0.0"
 
   - name: Maps
     composer: "mediawiki/maps"
@@ -61,7 +61,7 @@ list:
 
   - name: PageForms
     repo: https://github.com/wikimedia/mediawiki-extensions-PageForms.git
-    version: "tags/5.3.4"
+    version: "tags/5.6"
     config: |
       // If enabled all "red links" will bring up a form chooser
       $wgPageFormsLinkAllRedLinksToForms = false;
@@ -356,7 +356,7 @@ list:
 
   - name: DataTransfer
     repo: https://github.com/wikimedia/mediawiki-extensions-DataTransfer.git
-    version: "tags/1.1.1"
+    version: "tags/1.5.1"
 
   - name: PageImporter
     repo: https://github.com/enterprisemediawiki/PageImporter.git
