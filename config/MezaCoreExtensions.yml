@@ -12,6 +12,9 @@ list:
   - name: SubPageList
     composer: "mediawiki/sub-page-list"
     version: "3.0.0"
+    config: |
+      // In SubPageList 2.1+ you need to also load the extension
+      wfLoadExtension( 'SubPageList' );
 
   - name: Maps
     composer: "mediawiki/maps"
