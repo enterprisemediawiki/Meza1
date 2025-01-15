@@ -5,9 +5,17 @@ list:
     repo: https://github.com/wikimedia/mediawiki-extensions-Scribunto.git
     version: "{{ mediawiki_default_branch }}"
     config: |
-      $wgScribuntoDefaultEngine = 'luasandbox';
+      $wgScribuntoDefaultEngine = 'luastandalone';
       $wgScribuntoUseGeSHi = true;
       $wgScribuntoUseCodeEditor = true;
+      $wgScribuntoEngineConf['luastandalone']['luaPath'] = '/bin/lua';
+      $wgDebugLogGroups['Scribunto'] = "/var/log/lua/scribunto-debug.log";
+      $wgScribuntoEngineConf['lua']['debugLevel'] = 5;
+      $wgScribuntoEngineConf['luastandalone'] = [
+        'memoryLimit' => 52428800, // 50MB memory limit
+        'cpuLimit' => 30, // 30 second CPU time limit
+        'allowEnvFuncs' => false,
+      ];
 
   - name: SubPageList
     composer: "mediawiki/sub-page-list"
