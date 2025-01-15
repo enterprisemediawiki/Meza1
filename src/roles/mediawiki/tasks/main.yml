@@ -507,6 +507,37 @@
     - search-index
     - refresh-links
 
+- name: Check if Lua log directory exists
+  stat:
+    path: /var/log/lua
+  register: lua_log_dir
+
+- name: Create Lua log directory if it does not exist
+  file:
+    path: /var/log/lua
+    state: directory
+    mode: '0755'
+  when: not lua_log_dir.stat.exists
+
+- name: Check if Scribunto debug log exists
+  stat:
+    path: /var/log/lua/scribunto-debug.log
+  register: scribunto_log
+
+- name: Create Scribunto debug log if it does not exist
+  file:
+    path: /var/log/lua/scribunto-debug.log
+    state: touch
+    mode: '0644'
+  when: not scribunto_log.stat.exists
+
+- name: Set ownership of Scribunto debug log
+  file:
+    path: /var/log/lua/scribunto-debug.log
+    owner: apache
+    group: apache
+    mode: '0644'
+
 # FIXME: Should search and SMW building be after update.php?
 
 # FIXME: REMOVE?
