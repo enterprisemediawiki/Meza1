@@ -118,15 +118,6 @@
     port: "{{ elasticsearch_transport_port }}"
     delay: 35
 
-- name: Wait for cluster health to return to yellow or green
-  uri:
-    url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/health"
-    method: GET
-  register: response
-  until: "response.json.status == 'yellow' or response.json.status == 'green'"
-  retries: 5
-  delay: 30
-
 - name: Enable shard allocation for the cluster
   uri:
     url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/settings"
@@ -137,6 +128,15 @@
   # next line is boolean not string, so no quotes around true
   # use python truthiness
   until: "response.json.acknowledged == true"
+  retries: 5
+  delay: 30
+
+- name: Wait for cluster health to return to yellow or green
+  uri:
+    url: "http://localhost:{{ elasticsearch_http_port }}/_cluster/health"
+    method: GET
+  register: response
+  until: "response.json.status == 'yellow' or response.json.status == 'green'"
   retries: 5
   delay: 30
 
