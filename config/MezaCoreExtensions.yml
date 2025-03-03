@@ -7,7 +7,6 @@ list:
     config: |
       $wgScribuntoDefaultEngine = 'luastandalone';
       $wgScribuntoUseGeSHi = true;
-      $wgScribuntoUseCodeEditor = true;
       $wgScribuntoEngineConf['luastandalone']['luaPath'] = '/bin/lua';
       $wgDebugLogGroups['Scribunto'] = "/var/log/lua/scribunto-debug.log";
       $wgScribuntoEngineConf['lua']['debugLevel'] = 5;
@@ -95,10 +94,6 @@ list:
     repo: https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
     version: "{{ mediawiki_default_branch }}"
     composer_merge: True
-
-  - name: CodeEditor
-    repo: https://github.com/wikimedia/mediawiki-extensions-CodeEditor.git
-    version: "{{ mediawiki_default_branch }}"
 
   - name: InputBox
     repo: https://github.com/wikimedia/mediawiki-extensions-InputBox.git
